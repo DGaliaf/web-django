@@ -5,3 +5,4 @@ wait-for-it==2.2.1
 Pillow
 django-crispy-forms
 crispy-bootstrap4
+django-phonenumber-field[phonenumbers]

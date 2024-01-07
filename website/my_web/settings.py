@@ -15,8 +15,6 @@ from pathlib import Path
 
 from . import is_true, split_with_comma
 
-# from .website import is_true, split_with_comma
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -67,7 +65,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'website.urls'
+ROOT_URLCONF = 'my_web.urls'
 
 TEMPLATES = [
     {
@@ -85,7 +83,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'website.wsgi.application'
+WSGI_APPLICATION = 'my_web.wsgi.application'
 
 
 # Database

@@ -1,10 +1,11 @@
 from django.conf import settings
 from django.db import models
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class SubscribeForm(models.Model):
     email = models.EmailField(blank=False, unique=True)
-    phone = models.CharField(max_length=255, unique=True, blank=False, verbose_name="Телефон")
+    phone = PhoneNumberField(unique=True, blank=False, verbose_name="Телефон", region="RU")
     receive_adv = models.BooleanField(verbose_name="Получать рекламу")
 
 

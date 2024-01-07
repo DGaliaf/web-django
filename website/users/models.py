@@ -1,11 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone = models.CharField(max_length=255, blank=False, verbose_name="Телефон")
+    phone = PhoneNumberField(blank=False, verbose_name="Телефон", region="RU")
     name = models.CharField(max_length=255, blank=False, verbose_name="Имя")
     lastName = models.CharField(max_length=255, blank=False, verbose_name="Фамилия")
     surname = models.CharField(max_length=255, blank=False, verbose_name="Отчество")

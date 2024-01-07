@@ -32,19 +32,16 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['image', 'name', 'surname', 'lastName', 'phone']
+        fields = ['name', 'surname', 'lastName', 'phone']
 
     def clean(self):
-        if re.findall(r"^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$", self.cleaned_data["phone"]):
-            raise forms.ValidationError('Неверный номер телефона')
-
-        if len(self.cleaned_data["name"]) < 3:
+        if len(self.cleaned_data["name"]) <= 3:
             raise forms.ValidationError('Имя должно иметь 3 или более символов')
 
-        if len(self.cleaned_data["surname"]) < 3:
+        if len(self.cleaned_data["surname"]) <= 3:
             raise forms.ValidationError('Фамилия должна иметь 3 или более символов')
 
-        if len(self.cleaned_data["lastName"]) < 3:
+        if len(self.cleaned_data["lastName"]) <= 3:
             raise forms.ValidationError('Отчество должно иметь 3 или более символов')
 
         return self.cleaned_data

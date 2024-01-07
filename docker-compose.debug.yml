@@ -17,7 +17,7 @@ services:
     command: ["/docker-cmd.sh", "--debug"]
     volumes:
       - "media-data:/var/www/media"
-      - "./website:/usr/src/website"  # mount the source code
+      - "./my_web:/usr/src/my_web"  # mount the source code
     depends_on:
       - postgres
     labels:
