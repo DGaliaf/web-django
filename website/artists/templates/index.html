@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+{#  {{ artists }}#}
+
+  <h1 class="mb-5 mt-3">Артисты:</h1>
+  <div class="artists-block">
+    {% for artist in artists  %}
+{#        {{ artist. }}#}
+      <div class="card mb-3" style="max-width: 680px;">
+          <div class="row g-0">
+            <div class="col-md-6">
+              <img style="background-size: cover" src="{{ artist.image.url }}" class="img-fluid rounded-start" alt="Artist Image">
+            </div>
+            <div class="col-md-6">
+              <div class="card-body">
+                <h5 class="card-title mb-0">{{ artist.nickname }}</h5>
+                <span class="card-text">{{ artist.name }} {{ artist.surname }}</span>
+                <p class="card-text mt-3">{{ artist.shortBio }}</p>
+                <a href="{% url 'artists:artist_detail' artist.id artist.nickname %}" class="btn btn-primary">Подробнее</a>
+              </div>
+            </div>
+          </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

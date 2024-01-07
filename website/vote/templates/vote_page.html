@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                {{ artist_form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Отдать голос</button>
+            </div>
+        </form>
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                {{ track_form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Отдать голос</button>
+            </div>
+        </form>
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+              {{ album_form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Отдать голос</button>
+            </div>
+        </form>
+      </div>
+      <div class="col-md-3">
+        {{ track_form_errors }}
+        {{ artist_votes }}
+        {{ track_votes }}
+        {{ album_votes }}
+      </div>
+    </div>
+  </div>
+{% endblock %}

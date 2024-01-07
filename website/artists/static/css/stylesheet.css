@@ -1,0 +1,11 @@
+body {
+    background-color: white;
+}
+
+#nav, #footer {
+ background-color: cyan;
+}
+
+#footer > div {
+  gap: 15px;
+}

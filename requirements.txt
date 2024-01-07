@@ -1,0 +1,7 @@
+Django==4.2.3
+gunicorn==20.1.0
+psycopg2-binary==2.9.6
+wait-for-it==2.2.1
+Pillow
+django-crispy-forms
+crispy-bootstrap4
