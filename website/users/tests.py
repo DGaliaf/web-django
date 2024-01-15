@@ -127,11 +127,35 @@ class ProfileUpdateFormTest(TestCase):
 
         self.assertFalse(form.is_valid())
 
+    def test_form_with_incorrect_surname2(self):
+        form_data = {
+            "name": "Name",
+            "surname": "Sus34",
+            "lastName": "LastName",
+            "phone": "79998884433",
+        }
+
+        form = ProfileUpdateForm(data=form_data)
+
+        self.assertFalse(form.is_valid())
+
     def test_form_with_incorrect_lastName(self):
         form_data = {
             "name": "Name",
             "surname": "Surname",
             "lastName": "La",
+            "phone": "79998884433",
+        }
+
+        form = ProfileUpdateForm(data=form_data)
+
+        self.assertFalse(form.is_valid())
+
+    def test_form_with_incorrect_lastName2(self):
+        form_data = {
+            "name": "Name",
+            "surname": "Surname",
+            "lastName": "Lastname342",
             "phone": "79998884433",
         }
 

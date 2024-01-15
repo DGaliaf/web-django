@@ -38,8 +38,14 @@ class ProfileUpdateForm(forms.ModelForm):
         if len(self.cleaned_data["name"]) <= 3:
             raise forms.ValidationError('Имя должно иметь 3 или более символов')
 
-        if len(self.cleaned_data["name"]) <= 3:
-            raise forms.ValidationError('Имя должно иметь 3 или более символов')
+        if has_numbers(self.cleaned_data["name"]):
+            raise forms.ValidationError('Имя не должно иметь цифр')
+
+        if has_numbers(self.cleaned_data["surname"]):
+            raise forms.ValidationError('Имя не должно иметь цифр')
+
+        if has_numbers(self.cleaned_data["lastName"]):
+            raise forms.ValidationError('Имя не должно иметь цифр')
 
         if len(self.cleaned_data["surname"]) <= 3:
             raise forms.ValidationError('Фамилия должна иметь 3 или более символов')
@@ -48,3 +54,7 @@ class ProfileUpdateForm(forms.ModelForm):
             raise forms.ValidationError('Отчество должно иметь 3 или более символов')
 
         return self.cleaned_data
+
+
+def has_numbers(inputString):
+    return any(char.isdigit() for char in inputString)
