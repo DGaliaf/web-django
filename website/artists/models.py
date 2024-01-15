@@ -11,7 +11,7 @@ class SubscribeForm(models.Model):
 
 class Artist(models.Model):
     image = models.ImageField(max_length=255, blank=True, verbose_name="Изображение", default="default.jpg", upload_to='artist_pics')
-    nickname = models.CharField(max_length=255, blank=False, verbose_name="Псевдоним")
+    nickname = models.CharField(max_length=255, blank=False, verbose_name="Псевдоним", unique=True)
     name = models.CharField(max_length=255, blank=True, verbose_name="Имя")
     surname = models.CharField(max_length=255, blank=True, verbose_name="Фамилия")
     age = models.PositiveIntegerField(default=0, verbose_name="Возраст")
@@ -23,7 +23,7 @@ class Artist(models.Model):
 
 class Album(models.Model):
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255, blank=False)
+    name = models.CharField(max_length=255, blank=False, unique=True)
     description = models.TextField(blank=True)
     release_date = models.DateField()
 
@@ -32,6 +32,7 @@ class Album(models.Model):
 
 class Track(models.Model):
     album = models.ForeignKey(Album, on_delete=models.CASCADE, blank=True, null=True)
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, blank=True, null=True)
     name = models.CharField(max_length=255, blank=False)
     duration = models.DurationField()
     description = models.TextField(max_length=255, blank=True)

@@ -38,6 +38,9 @@ class ProfileUpdateForm(forms.ModelForm):
         if len(self.cleaned_data["name"]) <= 3:
             raise forms.ValidationError('Имя должно иметь 3 или более символов')
 
+        if len(self.cleaned_data["name"]) <= 3:
+            raise forms.ValidationError('Имя должно иметь 3 или более символов')
+
         if len(self.cleaned_data["surname"]) <= 3:
             raise forms.ValidationError('Фамилия должна иметь 3 или более символов')
 
