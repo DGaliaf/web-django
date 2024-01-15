@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'artists.apps.ArtistsConfig',
     'users.apps.UsersConfig',
-    'vote.apps.VoteConfig',
+    'polls.apps.PollsConfig',
     'crispy_forms',
     'crispy_bootstrap4'
 ]

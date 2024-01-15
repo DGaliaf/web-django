@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 {#  {{ artists }}#}
+  <div class="vote">
+    <a class="nav-link" href="{% url 'polls:questions' %}">Проголосовать</a>
+  </div>
 
   <h1 class="mb-5 mt-3">Артисты:</h1>
+
   <div class="artists-block">
     {% for artist in artists  %}
 {#        {{ artist. }}#}
