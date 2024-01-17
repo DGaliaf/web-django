@@ -105,7 +105,7 @@ if 'POSTGRES_DB' in os.environ:
         'PORT': os.environ['POSTGRES_PORT'],
     }
 
-LOGIN_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'users:profile'
 LOGIN_URL = 'user/login/'
 
 # Password validation

@@ -6,10 +6,11 @@ import re
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
+    city = forms.CharField()
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username', 'email', 'password1', 'password2', 'city']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -18,6 +19,7 @@ class UserRegisterForm(UserCreationForm):
         self.fields['email'].label = "Почта"
         self.fields['password1'].label = "Пароль"
         self.fields['password2'].label = "Подтверждение пароля"
+        self.fields['city'].label = "Город проживания"
         self.fields['password2'].help_text = "Повторите пароль, для подтверждения"
 
 
@@ -32,7 +34,7 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['name', 'surname', 'lastName', 'phone']
+        fields = ['name', 'surname', 'lastName', 'phone', 'city']
 
     def clean(self):
         if len(self.cleaned_data["name"]) <= 3:

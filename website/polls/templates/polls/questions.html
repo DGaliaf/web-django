@@ -1,5 +1,76 @@
 {% extends 'base.html' %}
 {% block content %}
+  <style>
+
+      #qzForm {
+          display: grid;
+          align-items: center !important;
+      }
+
+      form#subscriptionForm {
+          justify-content: center;
+          display: contents;
+      }
+
+      .form-check {
+          display: flex !important;
+          align-items: center;
+      }
+
+      .form-check .form-check-input {
+          z-index: 2;
+      }
+
+      .submit_back {
+          display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-end;
+      }
+
+      .cls {
+          margin-right: 8.25px !important;
+          margin-left: 8.25px !important;
+      }
+
+      .cls2 {
+          padding: 0 !important;
+      }
+
+      .sz {
+          width: 315px;
+      }
+
+      .clsn {
+          width: 600px !important;
+          height: 350px !important;
+      }
+
+      #Q2, #Q3, #rez {
+          display: none;
+      }
+
+      #qzLabel {
+          text-align: center;
+      }
+
+      #rz1 {
+          margin-top: 10px;
+      }
+
+
+      @keyframes fade-in-left {
+        0% {
+          opacity: 0;
+          transform: translateX(-20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+    </style>
+
     <section>
         <main class="mt-5 mb-5">
             <div class="container">
@@ -14,22 +85,112 @@
                                         </div>
                                     </div>
                                     <div>
-                                        {% for question in questions %}
-                                            <div class="message-card card-soft-primary mt-4">
-                                                <div class="card-body px-4">
-                                                    <span class="text-end">{{ question.published }}</span>
-                                                    <h6 class="fs--1 text-400 py-3">{{ question.name }}</h6>
-                                                    <div class="text-center mb-3">
-                                                        <a href="{% url 'polls:question' question.id %}"
-                                                           class="btn btn-primary rounded-pill btn-sm">Голосовать</a>
-                                                        <a href="{% url 'polls:results' question.id %}"
-                                                           class="btn btn-warning rounded-pill btn-sm">Результаты</a>
-                                                    </div>
+                                      <form method="POST" action="" id="qzForm">
+                                        {% csrf_token %}
+
+                                        <div class="f1border sz" id="Q1">
+                                            <p>Лучший артист за 2023г</p>
+
+                                            <div class="f1" style="display: flex; flex-direction: column">
+
+                                                <div class="form-check">
+                                                  <input class="form-check-input" type="radio" name="group1" id="frst1">
+                                                  <label class="form-check-label" for="frst1">
+                                                    <p>Morgenstern</p>
+                                                  </label>
                                                 </div>
+
+                                                <div class="form-check">
+                                                  <input class="form-check-input" type="radio" name="group1" id="frst2">
+                                                  <label class="form-check-label" for="frst2">
+                                                    <p>Midix</p>
+                                                  </label>
+                                                </div>
+
+                                                <div class="form-check">
+                                                  <input class="form-check-input" type="radio" name="group1" id="frst3">
+                                                  <label class="form-check-label" for="frst3">
+                                                    <p>OG Buda</p>
+                                                  </label>
+                                                </div>
+
                                             </div>
-                                        {% endfor %}
+
+                                            <div>
+                                                <button type="button" class="btn btn-outline-light text-secondary cls" data-bs-dismiss="modal" onclick="redirectToPage()">Back</button>
+                                                <button type="button" class="btn btn-outline-light text-secondary" onclick="divswap('Q1', 'Q2')">Next</button>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="f1border sz" id="Q2">
+                                          <div style="display: flex; flex-direction: column">
+
+                                              <p>Лучший трек за 2023г</p>
+
+                                            <div class="f1" style="display: flex; flex-direction: column">
+
+                                                <div class="form-check">
+                                                  <input class="form-check-input" type="checkbox" name="group2" id="scnd1">
+                                                  <label class="form-check-label" for="scnd1">
+                                                    <p>Oxxxymiron - Город под подошвой</p>
+                                                  </label>
+                                                </div>
+
+                                                <div class="form-check">
+                                                  <input class="form-check-input" type="checkbox" name="group2" id="scnd2">
+                                                  <label class="form-check-label" for="scnd2">
+                                                    <p>1.$klass - Танцуйте</p>
+                                                  </label>
+                                                </div>
+
+                                                <div class="form-check">
+                                                  <input class="form-check-input" type="checkbox" name="group2" id="scnd3">
+                                                  <label class="form-check-label" for="scnd3">
+                                                    <p>Morgenshtern - ГРУСТНО</p>
+                                                  </label>
+                                                </div>
+
+                                            </div>
+
+                                            <div>
+                                                <button type="button" class="btn btn-outline-light text-secondary" onclick="divswap('Q2', 'Q1')">Prev</button>
+                                                <button type="button" class="btn btn-outline-light text-secondary" onclick="divswap('Q2', 'Q3')">Next</button>
+                                            </div>
+
+                                          </div>
+                                        </div>
+
+                                        <div class="f1border sz" id="Q3">
+                                          <div style="display: flex; flex-direction: column">
+                                              <p>Лучший альбом за 2023г</p>
+
+                                            <div class="form-check cls2">
+                                                <input name="group3" type="text" class="form-control" placeholder="Альбом" id="thrd1">
+                                            </div>
+
+                                            <div>
+                                                <button type="button" class="btn btn-outline-light text-secondary" onclick="divswap('Q3', 'Q2')">Prev</button>
+                                                <button type="submit" class="btn btn-outline-light text-secondary" onclick="divswap('Q3', 'rez')">Submit</button>
+                                            </div>
+                                          </div>
+
+
+                                        </div>
+
+                                        <div class="f1border sz" id="rez">
+                                          <div  style="display: flex; flex-direction: column">
+                                            <div id="rz1"></div>
+                                            <div id="rz2"></div>
+                                            <div id="rz3"></div>
+                                            <div id="total"></div>
+                                            <div id="cursed" style="display: none"><img src="https://cdn.discordapp.com/attachments/609574777686065182/1192683509584769074/SUSCHTSCH2.jpg?ex=65a9f813&is=65978313&hm=a5060d1914e7c25dffdcb09c54bf5d9076254a08b04c02bce82772ebe133dd5e&"></div>
+                                            <button type="button" class="btn btn-outline-light text-secondary cls" data-bs-dismiss="modal" onclick="redirectToPage()">Back</button>
+                                          </div>
+                                        </div>
+
+                                    </form>
                                     </div>
-                                    <div class="my-4">{% include 'pagination.html' with queryset=questions custom_range=custom_range %}</div>
                                 </div>
                             </div>
                         </div>
@@ -38,4 +199,79 @@
             </div>
         </main>
     </section>
+
+
+  <script>
+
+function redirectToPage() {
+  window.location.href = '/';
+}
+
+function divswap(currentDivId, nextDivId) {
+  var currentDiv = document.getElementById(currentDivId);
+  var nextDiv = document.getElementById(nextDivId);
+
+  currentDiv.style.display = 'none';
+  nextDiv.style.display = 'flex';
+}
+
+$(document).ready(function(){
+    $('#qzForm').submit(function(e){
+
+            e.preventDefault();
+
+            var formData = $(this).serialize();
+
+            let Frag1Ant1 = document.getElementById('frst1');
+            let Frag1Ant2 = document.getElementById('frst2');
+            let Frag1Ant3 = document.getElementById('frst3');
+
+            let Frag2Ant1 = document.getElementById('scnd1');
+            let Frag2Ant2 = document.getElementById('scnd2');
+            let Frag2Ant3 = document.getElementById('scnd3');
+
+            let Frag3Ant = document.getElementById('thrd1');
+
+            var Q1 = 'False'; var Q2 = 'False'; var Q3 = 'False';
+            var a = 0;
+
+            if (Frag1Ant1.checked) { Q1 = 'True'; a += 1; }
+            if (Frag2Ant3.checked) { Q2 = 'True'; a += 1; }
+            if (Frag3Ant.value == '1/2' || Frag3Ant.value == '0.5' || Frag3Ant.value == '0,5') { Q3 = 'True'; a += 1; }
+
+            var tot = 'Total: ' + (a / 3 * 100).toFixed(2).toString() + "%";
+
+            if (Frag3Ant.value == 'SUSCHTSCH') {
+                var d1 = document.getElementById('Q1');
+                var d2 = document.getElementById('Q2');
+                var d3 = document.getElementById('Q3');
+                var d4 = document.getElementById('cursed');
+                d1.style.display = 'none';
+                d2.style.display = 'none';
+                d3.style.display = 'none';
+                d4.style.display = 'block';
+
+                total = '-666'
+            }
+
+            $.ajax({
+            type: 'POST',
+            url: '/',
+            data: formData,
+            success: function(response){
+                $('#qzLabel').text('Your results:');
+                $('#rz1').text('First choose is ' + Q1);
+                $('#rz2').text('Second choose is ' + Q2);
+                $('#rz3').text('Third choose is ' + Q3);
+                $('#total').text(tot);
+            },
+            error: function(response){
+                $('#qzMessage').text('Произошла ошибка.');
+            }
+        });
+    });
+});
+
+  </script>
+
 {% endblock %}

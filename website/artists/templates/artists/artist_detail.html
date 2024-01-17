@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
+      <style data-tag="default-style-sheet">
+      #id_email {
+        color: black !important;
+      }
+
+      #id_phone {
+        color: black !important;
+      }
+      </style>
+
   <div class="container-fluid mb-5">
   <nav aria-label="breadcrumb" style="background-color: transparent !important;">
                 <ol class="breadcrumb" style="background-color: transparent !important;">
@@ -18,7 +28,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title text-white" id="exampleModalLabel">Подписаться на {{ object.name }}</h5>
+            <h5 class="modal-title text-black" id="exampleModalLabel">Подписаться на {{ object.name }}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
