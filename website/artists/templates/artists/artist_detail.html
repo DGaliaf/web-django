@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% load static %}
 {% block content %}
       <style data-tag="default-style-sheet">
-      #id_email {
+        .requiredField, .form-check-label {
         color: black !important;
       }
 
-      #id_phone {
-        color: black !important;
-      }
+      {##id_phone {#}
+      {#  color: black !important;#}
       </style>
 
   <div class="container-fluid mb-5">
@@ -22,7 +22,7 @@
   <div class="container mt-5">
     <div class="row d-flex justify-content-center">
       <div>
-        <h1 class="h1 text-white d-block mb-6">{{ object.name }}</h1>
+        <h1 class="h1 text-white d-block mb-6">{{ object.name }} {{ object.surname }} ({{ object.nickname }})</h1>
 
         <div class="modal fade" id="uA" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -36,7 +36,7 @@
           <div class="modal-body">
             <form method="POST">
                 {% csrf_token %}
-                <fieldset class="form-group">
+                <fieldset class="form-group" style="color: black;">
                   {{ u_form|crispy }}
                 </fieldset>
                 <div class="form-group">
@@ -108,7 +108,7 @@
                             <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                                     data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"
                                     style="color: white;">
-                                Треки
+                                Альбомы
                             </button>
                         </h5>
                     </div>
@@ -121,7 +121,6 @@
                                 <li class="book-item">
                                     <h3 class="book-title">{{ track.name }}</h3><p class="book-description"><strong>«{{track.name}}»</strong> — {{ track.description }} </p>
                                 </li>
-                                <li class="book-item">{{ track.duration }}</li>
                                 <li class="book-item">{{ track.release_date }}</li>
                               {% endfor %}
                             </ul>
@@ -137,7 +136,7 @@
                             <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                                     data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"
                                     style="color: white;">
-                                Альбомы
+                                Треки
                             </button>
                         </h5>
                     </div>
@@ -170,13 +169,22 @@
 
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{{ object.image }}" class="d-block w-100, img-car" alt="Carousel Image 1">
+                        <img src="{% static 'img/morgen1.jpg' %}" class="d-block w-100 img-car" alt="Carousel Image 1" />
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ object.image }}" class="d-block w-100, img-car" alt="Carousel Image 2">
+                        <img src="{% static 'img/morgen2.jpg' %}" class="d-block w-100 img-car" alt="Carousel Image 1" />
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ object.image }}" class="d-block w-100, img-car" alt="Carousel Image 3">
+                        <img src="{% static 'img/morgen3.jpg' %}" class="d-block w-100 img-car" alt="Carousel Image 1" />
+                    </div>
+                    <div class="carousel-item">
+                          <img src="{% static 'img/morgen4.jpg' %}" class="d-block w-100 img-car" alt="Carousel Image 1" />
+                      </div>
+                    <div class="carousel-item">
+                          <img src="{% static 'img/morgen5.jpg' %}" class="d-block w-100 img-car" alt="Carousel Image 1" />
+                      </div>
+                    <div class="carousel-item">
+                          <img src="{% static 'img/morgen6.jpg' %}" class="d-block w-100 img-car" alt="Carousel Image 1" />
                     </div>
                 </div>
 
@@ -198,7 +206,7 @@
 
         <div class="col-md-4">
 
-          <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#uA">
+          <button type="button" class="buttonFilled mb-3" data-toggle="modal" data-target="#uA">
             Подписаться
         </button>
 

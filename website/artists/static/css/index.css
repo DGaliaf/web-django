@@ -22446,6 +22446,12 @@ iframe.yt-video.loaded {
 
 
 /*# sourceMappingURL=theme.css.map */
-/*label, legend {*/
-/*  color: white !important;*/
-/*}*/
+
+.home-artists > label {
+  color: white !important;
+}
+
+
+.home-artists > legend {
+  color: white !important;
+}

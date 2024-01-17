@@ -12,6 +12,12 @@ class City(models.Model):
     def __str__(self):
         return f'{self.name}'
 
+class Tastes(models.Model):
+    name = models.CharField(max_length=255, blank=False, verbose_name="Жанр")
+
+    def __str__(self):
+        return f'{self.name}'
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -21,6 +27,7 @@ class Profile(models.Model):
     surname = models.CharField(max_length=255, blank=False, verbose_name="Отчество")
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
     city = models.ManyToManyField(City, verbose_name="Город проживания")
+    tastes = models.ManyToManyField(Tastes, verbose_name="Город проживания")
 
     def __str__(self):
         return f'{self.user.username} Profile'

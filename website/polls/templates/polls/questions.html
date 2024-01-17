@@ -259,10 +259,10 @@ $(document).ready(function(){
             url: '/',
             data: formData,
             success: function(response){
-                $('#qzLabel').text('Your results:');
-                $('#rz1').text('First choose is ' + Q1);
-                $('#rz2').text('Second choose is ' + Q2);
-                $('#rz3').text('Third choose is ' + Q3);
+                $('#qzLabel').text('Результат:');
+                $('#rz1').text('Первый выбор: ' + Q1);
+                $('#rz2').text('Второй выбор: ' + Q2);
+                $('#rz3').text('Третий выбор: ' + Q3);
                 $('#total').text(tot);
             },
             error: function(response){

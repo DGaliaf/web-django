@@ -1,3 +1,4 @@
+from django.db.models import QuerySet
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -10,8 +11,20 @@ def register(request):
             form.save()
 
             username = form.cleaned_data.get('username')
-            name = form.cleaned_data.get('name')
-            messages.success(request, f'{name} ({username}), ваш аккаунт создан: можно войти на сайт.')
+            email = form.cleaned_data.get('email')
+            city = form.cleaned_data.get('city')
+            tastes = form.cleaned_data.get('tastes')
+
+            output = ""
+            for taste in tastes:
+                output += taste.name
+                output += "; "
+
+            output = output[:len(output)-1]
+
+            msg = f'Спасибо за регистрацию - {username}\n\nПодтвердите свою почту - {email}\nВаш город проживания: {city}\nВаши вкусы: {tastes}'
+
+            messages.success(request, f'Спасибо за регистрацию - {username} | Подтвердите свою почту - {email} | Ваш город проживания: {city} | Ваши вкусы: {output}')
             return redirect('users:login')
     else:
         form = UserRegisterForm()

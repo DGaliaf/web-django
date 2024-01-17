@@ -1,16 +1,17 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile
+from .models import Profile, City, Tastes
 import re
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
-    city = forms.CharField()
+    city = forms.ModelChoiceField(queryset=City.objects.all(), widget=forms.RadioSelect)
+    tastes = forms.ModelMultipleChoiceField(queryset=Tastes.objects.all(), widget=forms.CheckboxSelectMultiple)
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2', 'city']
+        fields = ['username', 'email', 'password1', 'password2', 'city', 'tastes']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -21,6 +22,8 @@ class UserRegisterForm(UserCreationForm):
         self.fields['password2'].label = "Подтверждение пароля"
         self.fields['city'].label = "Город проживания"
         self.fields['password2'].help_text = "Повторите пароль, для подтверждения"
+        self.fields['username'].help_text = ""
+        self.fields['password1'].help_text = ""
 
 
 class UserUpdateForm(forms.ModelForm):
